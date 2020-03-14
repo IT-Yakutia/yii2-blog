@@ -1,7 +1,7 @@
 <?php
 
 use blog\models\ArticleCategory;
-use uraankhayayaal\gallery\widgets\imgUploader\WGalleryImgUploader; // TODO после добавления галереи
+use gallery\widgets\imgUploader\WGalleryImgUploader; // TODO после добавления галереи
 use uraankhayayaal\materializecomponents\checkbox\WCheckbox;
 use uraankhayayaal\materializecomponents\imgcropper\Cropper;
 use uraankhayayaal\redactor\RedactorWidget;

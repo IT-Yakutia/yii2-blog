@@ -6,6 +6,7 @@ namespace blog\controllers;
 use Yii;
 use blog\models\ArticleCategory;
 use blog\models\ArticleCategorySearch;
+use yii\db\StaleObjectException;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -115,11 +116,14 @@ class BackCategoryController extends Controller
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws \Throwable
+     * @throws StaleObjectException
      */
     public function actionDelete($id)
     {
-        if($this->findModel($id)->delete() !== false)
+        if($this->findModel($id)->delete() !== false) {
             Yii::$app->session->setFlash('success', 'Запись успешно удалена!');
+        }
 
         return $this->redirect(['index']);
     }
@@ -131,7 +135,7 @@ class BackCategoryController extends Controller
      * @return ArticleCategory the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($id): ArticleCategory
     {
         if (($model = ArticleCategory::findOne($id)) !== null) {
             return $model;

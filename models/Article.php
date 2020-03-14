@@ -3,9 +3,9 @@
 namespace blog\models;
 
 use yii\behaviors\TimestampBehavior;
-// TODO перенести галерею
-use uraankhayayaal\gallery\models\GalleryArticle;
+use gallery\models\GalleryArticle;
 use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "article".
@@ -25,25 +25,22 @@ use yii\db\ActiveQuery;
  * @property ArticleCategorySet[] $articleCategorySets
  * @property GalleryArticle[] $galleryArticles
  */
-class Article extends \yii\db\ActiveRecord
+class Article extends ActiveRecord
 {
     public $categories = [];
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'article';
     }
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             TimestampBehavior::class,
         ];
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['title'], 'required'],
@@ -54,7 +51,7 @@ class Article extends \yii\db\ActiveRecord
         ];
     }
 
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => 'ID',

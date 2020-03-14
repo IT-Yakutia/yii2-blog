@@ -144,11 +144,14 @@ class BackController extends Controller
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function actionDelete($id)
     {
-        if($this->findModel($id)->delete() !== false)
+        if($this->findModel($id)->delete() !== false) {
             Yii::$app->session->setFlash('success', 'Запись успешно удалена!');
+        }
 
         return $this->redirect(Url::previous());
     }

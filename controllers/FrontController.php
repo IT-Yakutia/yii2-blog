@@ -29,7 +29,12 @@ class FrontController extends Controller
         ]);
     }
 
-    public function actionView($id)
+    /**
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
+    public function actionView($id): string
     {
         $view = Yii::$app->params['custom_view_for_modules']['blog_front']['view'] ?? 'view';
 
