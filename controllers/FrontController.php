@@ -14,15 +14,9 @@ use yii\web\NotFoundHttpException;
 
 class FrontController extends Controller
 {
-    public function actionView($slug)
+    public function actionView($slug): string
     {
-        $view = 'view';
-        if(
-            isset(Yii::$app->params['custom_view_for_modules']) &&
-            isset(Yii::$app->params['custom_view_for_modules']['page_front']) &&
-            isset(Yii::$app->params['custom_view_for_modules']['page_front']['view'])
-        )
-            $view = Yii::$app->params['custom_view_for_modules']['page_front']['view'];
+        $view = Yii::$app->params['custom_view_for_modules']['page_front']['view'] ?? 'view';
 
         $model = $this->findModel($slug);
         return $this->render($view, [
