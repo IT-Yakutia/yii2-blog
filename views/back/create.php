@@ -4,13 +4,11 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model blog\models\Page */
+/* @var $model blog\models\Article */
 
-$this->title = 'Новая страница';
-// $this->params['breadcrumbs'][] = ['label' => 'Pages', 'url' => ['index']];
-// $this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Новая новость';
 ?>
-<div class="page-create">
+<div class="article-create">
     <div class="row">
         <div class="col s12">
             <?= $this->render('_form', [
@@ -19,3 +17,4 @@ $this->title = 'Новая страница';
         </div>
     </div>
 </div>
+

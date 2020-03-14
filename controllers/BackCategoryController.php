@@ -3,37 +3,33 @@
 
 namespace blog\controllers;
 
-
 use Yii;
-use yii\helpers\Url;
+use blog\models\ArticleCategory;
+use blog\models\ArticleCategorySearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
-use uraankhayayaal\page\models\PageMenu;
-use uraankhayayaal\page\models\PageMenuSearch;
 use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 
 /**
- * BackMenuController implements the CRUD actions for PageMenu model.
+ * BackCategoryController implements the CRUD actions for ArticleCategory model.
  */
-class BackMenuController extends Controller
+class BackCategoryController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'access' => [
-                'class' => \yii\filters\AccessControl::className(),
+                'class' => AccessControl::class,
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['page_menu']
+                        'roles' => ['news_category']
                     ]
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -42,15 +38,13 @@ class BackMenuController extends Controller
     }
 
     /**
-     * Lists all PageMenu models.
+     * Lists all ArticleCategory models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PageMenuSearch();
+        $searchModel = new ArticleCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        Url::remember();
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -59,7 +53,7 @@ class BackMenuController extends Controller
     }
 
     /**
-     * Displays a single PageMenu model.
+     * Displays a single ArticleCategory model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -72,17 +66,19 @@ class BackMenuController extends Controller
     }
 
     /**
-     * Creates a new PageMenu model.
+     * Creates a new ArticleCategory model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new PageMenu();
+        $model = new ArticleCategory();
+        $post = Yii::$app->request->post();
+        $load = $model->load($post);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($load && $model->save()) {
             Yii::$app->session->setFlash('success', 'Запись успешно создана!');
-            return $this->redirect(Url::previous());
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -91,7 +87,7 @@ class BackMenuController extends Controller
     }
 
     /**
-     * Updates an existing PageMenu model.
+     * Updates an existing ArticleCategory model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -100,10 +96,12 @@ class BackMenuController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $post = Yii::$app->request->post();
+        $load = $model->load($post);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($load && $model->save()) {
             Yii::$app->session->setFlash('success', 'Запись успешно изменена!');
-            return $this->redirect(Url::previous());
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
@@ -112,7 +110,7 @@ class BackMenuController extends Controller
     }
 
     /**
-     * Deletes an existing PageMenu model.
+     * Deletes an existing ArticleCategory model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -120,21 +118,22 @@ class BackMenuController extends Controller
      */
     public function actionDelete($id)
     {
-        if ($this->findModel($id)->delete() !== false)
+        if($this->findModel($id)->delete() !== false)
             Yii::$app->session->setFlash('success', 'Запись успешно удалена!');
-        return $this->redirect(Url::previous());
+
+        return $this->redirect(['index']);
     }
 
     /**
-     * Finds the PageMenu model based on its primary key value.
+     * Finds the ArticleCategory model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return PageMenu the loaded model
+     * @return ArticleCategory the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = PageMenu::findOne($id)) !== null) {
+        if (($model = ArticleCategory::findOne($id)) !== null) {
             return $model;
         }
 

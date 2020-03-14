@@ -8,19 +8,19 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 
-class PageSearch extends Page
+/**
+ * ArticleCategorySearch represents the model behind the search form of `ayaalkaplin\blog\models\ArticleCategory`.
+ */
+class ArticleCategorySearch extends ArticleCategory
 {
     public function rules(): array
     {
         return [
-            [['id', 'sort', 'user_id', 'is_publish', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'content', 'photo', 'slug'], 'safe'],
+            [['id', 'is_publish', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['title'], 'safe'],
         ];
     }
 
-    /**
-     * @return array
-     */
     public function scenarios(): array
     {
         // bypass scenarios() implementation in the parent class
@@ -36,13 +36,13 @@ class PageSearch extends Page
      */
     public function search($params): ActiveDataProvider
     {
-        $query = Page::find();
+        $query = ArticleCategory::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['sort'=>SORT_ASC]],
+            'sort'=> ['defaultOrder' => ['created_at'=>SORT_DESC]],
         ]);
 
         $this->load($params);
@@ -56,18 +56,13 @@ class PageSearch extends Page
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'sort' => $this->sort,
-            'user_id' => $this->user_id,
             'is_publish' => $this->is_publish,
             'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'photo', $this->photo])
-            ->andFilterWhere(['like', 'slug', $this->slug]);
+        $query->andFilterWhere(['like', 'title', $this->title]);
 
         return $dataProvider;
     }

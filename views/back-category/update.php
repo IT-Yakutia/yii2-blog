@@ -1,11 +1,11 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $model blog\models\PageMenuItem */
+/* @var $model blog\models\ArticleCategory */
 
-$this->title = 'Редактирование: ' . $model->name;
+$this->title = 'Редактирование: ' . $model->title;
 ?>
-<div class="page-menu-item-update">
+<div class="article-category-update">
     <div class="row">
         <div class="col s12">
             <?= $this->render('_form', [
@@ -14,5 +14,4 @@ $this->title = 'Редактирование: ' . $model->name;
         </div>
     </div>
 </div>
-
 

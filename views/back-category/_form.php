@@ -5,11 +5,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model blog\models\PageMenu */
+/* @var $model blog\models\ArticleCategory */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="page-menu-form">
+<div class="article-category-form">
 
     <?php $form = ActiveForm::begin([
         'errorCssClass' => 'red-text',
@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?= WCheckbox::widget(['model' => $model, 'attribute' => 'is_publish']); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn']) ?>
@@ -26,12 +26,13 @@ use yii\widgets\ActiveForm;
         <?= Html::submitButton('<i class="material-icons">save</i>', [
             'class' => 'btn-floating btn-large waves-effect waves-light tooltipped',
             'title' => 'Сохранить',
-            'data-position' => "left",
-            'data-tooltip' => "Сохранить",
+            'data-position' => 'left',
+            'data-tooltip' => 'Сохранить',
         ]) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
 
 </div>
+
 

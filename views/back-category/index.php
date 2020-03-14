@@ -7,13 +7,12 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel blog\models\PageMenuSearch */
+/* @var $searchModel blog\models\ArticleCategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Меню';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Категории новостей';
 ?>
-<div class="page-menu-index">
+<div class="article-category-index">
     <div class="row">
         <div class="col s12">
             <p>
@@ -36,20 +35,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'columns' => [
                     ['class' => SerialColumn::class],
-                    ['class' => MaterialActionColumn::class,
-                        'template' => '{view} {update} {delete}',
-                        'buttons' => [
-                            'view' => function($url, $model, $key) {     // render your custom button
-                                return Html::a('<i class="material-icons">pageview</i>',['/page/back-menu-item/index', 'page_menu_id' => $model->id]);
-                            }
-                        ]
-                    ],
-
+                    ['class' => MaterialActionColumn::class, 'template' => '{update} {delete}'],
                     [
-                        'attribute' => 'name',
+                        'attribute' => 'title',
                         'format' => 'raw',
-                        'value' => function($model){
-                            return Html::a($model->name,['update', 'id' => $model->id]);
+                        'value' => static function($model){
+                            return Html::a($model->title,['update', 'id' => $model->id]);
                         }
                     ],
                     [
@@ -74,4 +65,5 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+
 

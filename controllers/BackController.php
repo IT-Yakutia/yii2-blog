@@ -2,7 +2,8 @@
 
 namespace blog\controllers;
 
-use uraankhayayaal\sortable\actions\Sorting;
+use blog\models\Article;
+use blog\models\ArticleSearch;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
@@ -12,13 +13,12 @@ use vova07\imperavi\actions\UploadFileAction;
 use vova07\imperavi\actions\GetImagesAction;
 use vova07\imperavi\actions\GetFilesAction;
 use uraankhayayaal\materializecomponents\imgcropper\actions\UploadAction;
-use uraankhayayaal\page\models\Page;
-use uraankhayayaal\page\models\PageSearch;
 use yii\web\NotFoundHttpException;
+
 
 class BackController extends Controller
 {
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'access' => [
@@ -26,7 +26,7 @@ class BackController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['page']
+                        'roles' => ['news']
                     ]
                 ],
             ],
@@ -39,54 +39,50 @@ class BackController extends Controller
         ];
     }
 
-    public function actions()
+    public function actions(): array
     {
         return [
             'image-upload' => [
                 'class' => UploadFileAction::class,
-                'url' => '/images/imperavi/page/',
-                'path' => '@frontend/web/images/imperavi/page/',
+                'url' => Yii::$app->params['domain'].'/images/imperavi/article/',
+                'path' => '@frontend/web/images/imperavi/article/',
                 'translit' => true,
             ],
             'file-upload' => [
                 'class' => UploadFileAction::class,
-                'url' => '/images/imperavi/page/',
-                'path' => '@frontend/web/images/imperavi/page/',
+                'url' => Yii::$app->params['domain'].'/images/imperavi/article/',
+                'path' => '@frontend/web/images/imperavi/article/',
                 'uploadOnlyImage' => false,
                 'translit' => true,
             ],
             'images-get' => [
                 'class' => GetImagesAction::class,
-                'url' => '/images/imperavi/page/',
-                'path' => '@frontend/web/images/imperavi/page/',
+                'url' => Yii::$app->params['domain'].'/images/imperavi/article/',
+                'path' => '@frontend/web/images/imperavi/article/',
                 'options' => ['only' => ['*.jpg', '*.jpeg', '*.png', '*.gif', '*.ico']],
             ],
             'files-get' => [
                 'class' => GetFilesAction::class,
-                'url' => '/images/imperavi/page/',
-                'path' => '@frontend/web/images/imperavi/page/',
+                'url' => Yii::$app->params['domain'].'/images/imperavi/article/',
+                'path' => '@frontend/web/images/imperavi/article/',
                 'options' => ['only' => ['*.txt', '*.md', '*.zip', '*.rar', '*.docx', '*.doc', '*.pdf', '*.xls']],
             ],
             'uploadImg' => [
                 'class' => UploadAction::class,
-                'url' => '/images/uploads/page/',
-                'path' => '@frontend/web/images/uploads/page/',
+                'url' => Yii::$app->params['domain'].'/images/uploads/article/',
+                'path' => '@frontend/web/images/uploads/article/',
                 'maxSize' => 10485760,
-            ],
-            'sorting' => [
-                'class' => Sorting::class,
-                'query' => Page::find(),
-            ],
+            ]
         ];
     }
 
     /**
-     * Lists all Page models.
+     * Lists all Article models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PageSearch();
+        $searchModel = new ArticleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         Url::remember();
@@ -98,28 +94,17 @@ class BackController extends Controller
     }
 
     /**
-     * Displays a single Page model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * Creates a new Page model.
+     * Creates a new Article model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Page();
+        $model = new Article();
+        $post = Yii::$app->request->post();
+        $load = $model->load($post);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($load && $model->save()) {
             Yii::$app->session->setFlash('success', 'Запись успешно создана!');
             return $this->redirect(Url::previous());
         }
@@ -130,7 +115,7 @@ class BackController extends Controller
     }
 
     /**
-     * Updates an existing Page model.
+     * Updates an existing Article model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -140,7 +125,10 @@ class BackController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $post = Yii::$app->request->post();
+        $load = $model->load($post);
+
+        if ($load && $model->save()) {
             Yii::$app->session->setFlash('success', 'Запись успешно изменена!');
             return $this->redirect(Url::previous());
         }
@@ -151,7 +139,7 @@ class BackController extends Controller
     }
 
     /**
-     * Deletes an existing Page model.
+     * Deletes an existing Article model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -161,23 +149,23 @@ class BackController extends Controller
     {
         if($this->findModel($id)->delete() !== false)
             Yii::$app->session->setFlash('success', 'Запись успешно удалена!');
+
         return $this->redirect(Url::previous());
     }
 
     /**
-     * Finds the Page model based on its primary key value.
+     * Finds the Article model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Page the loaded model
+     * @return Article the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($id): Article
     {
-        if (($model = Page::findOne($id)) !== null) {
+        if (($model = Article::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
 }
