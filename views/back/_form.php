@@ -1,6 +1,6 @@
 <?php
 
-use ityakutia\blog\models\ArticleCategory;
+use blog\models\ArticleCategory;
 use gallery\widgets\imgUploader\WGalleryImgUploader; // TODO после добавления галереи
 use uraankhayayaal\materializecomponents\checkbox\WCheckbox;
 use uraankhayayaal\materializecomponents\imgcropper\Cropper;
@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
-/* @var $model ityakutia\blog\models\Article */
+/* @var $model blog\models\Article */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
