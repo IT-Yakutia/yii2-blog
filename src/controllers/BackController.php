@@ -1,6 +1,6 @@
 <?php
 
-namespace blog\controllers;
+namespace ityakutia\blog\controllers;
 
 use blog\models\Article;
 use blog\models\ArticleSearch;

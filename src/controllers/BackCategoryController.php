@@ -1,7 +1,7 @@
 <?php
 
 
-namespace blog\controllers;
+namespace ityakutia\blog\controllers;
 
 use Yii;
 use blog\models\ArticleCategory;

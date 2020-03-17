@@ -1,7 +1,7 @@
 <?php
 
 
-namespace blog\models;
+namespace ityakutia\blog\models;
 
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;

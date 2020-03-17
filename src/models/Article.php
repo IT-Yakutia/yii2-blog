@@ -1,6 +1,6 @@
 <?php
 
-namespace blog\models;
+namespace ityakutia\blog\models;
 
 use yii\behaviors\TimestampBehavior;
 use gallery\models\GalleryArticle;

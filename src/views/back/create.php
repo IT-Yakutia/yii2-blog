@@ -1,11 +1,14 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $model blog\models\Article */
+use yii\helpers\Html;
 
-$this->title = 'Редактирование: ' . $model->title;
+
+/* @var $this yii\web\View */
+/* @var $model ityakutia\blog\models\Article */
+
+$this->title = 'Новая новость';
 ?>
-<div class="article-update">
+<div class="article-create">
     <div class="row">
         <div class="col s12">
             <?= $this->render('_form', [

@@ -7,12 +7,12 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel blog\models\ArticleSearch */
+/* @var $searchModel ityakutia\blog\models\ArticleCategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Новости';
+$this->title = 'Категории новостей';
 ?>
-<div class="article-index">
+<div class="article-category-index">
     <div class="row">
         <div class="col s12">
             <p>
@@ -37,13 +37,6 @@ $this->title = 'Новости';
                     ['class' => SerialColumn::class],
                     ['class' => MaterialActionColumn::class, 'template' => '{update} {delete}'],
                     [
-                        'header' => 'Фото',
-                        'format' => 'raw',
-                        'value' => static function($model) {
-                            return $model->photo ? '<img class="materialboxed" src="'.$model->photo.'" width="70">':'';
-                        }
-                    ],
-                    [
                         'attribute' => 'title',
                         'format' => 'raw',
                         'value' => static function($model){
@@ -51,23 +44,12 @@ $this->title = 'Новости';
                         }
                     ],
                     [
-                        'attribute' => 'categories',
-                        'format' => 'raw',
-                        'value' => static function($model){
-                            $data = '';
-                            foreach ($model->articleCategorySets as $key => $categorySet) {
-                                $data .= '<p>' .$categorySet->articleCategory->title. '</p>';
-                            }
-                            return $data;
-                        },
-                    ],
-                    [
                         'attribute' => 'is_publish',
                         'format' => 'raw',
-                        'value' => function($model){
+                        'value' => static function($model){
                             return $model->is_publish ? '<i class="material-icons green-text">done</i>' : '<i class="material-icons red-text">clear</i>';
                         },
-                        'filter' => [0 => 'Нет', 1 => 'Да'],
+                        'filter' =>[0 => 'Нет', 1 => 'Да'],
                     ],
                 ],
                 'pager' => [
@@ -83,4 +65,5 @@ $this->title = 'Новости';
         </div>
     </div>
 </div>
+
 

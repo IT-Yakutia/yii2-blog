@@ -1,16 +1,13 @@
 <?php
 
 
-namespace blog\models;
+namespace ityakutia\blog\models;
 
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 
-/**
- * ArticleCategorySearch represents the model behind the search form of `ayaalkaplin\blog\models\ArticleCategory`.
- */
 class ArticleCategorySearch extends ArticleCategory
 {
     public function rules(): array

@@ -1,11 +1,11 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $model blog\models\ArticleCategory */
+/* @var $model ityakutia\blog\models\ArticleCategory */
 
-$this->title = 'Новая категория новости';
+$this->title = 'Редактирование: ' . $model->title;
 ?>
-<div class="article-category-create">
+<div class="article-category-update">
     <div class="row">
         <div class="col s12">
             <?= $this->render('_form', [
@@ -14,5 +14,4 @@ $this->title = 'Новая категория новости';
         </div>
     </div>
 </div>
-
 
