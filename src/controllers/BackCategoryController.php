@@ -4,8 +4,8 @@
 namespace ityakutia\blog\controllers;
 
 use Yii;
-use blog\models\ArticleCategory;
-use blog\models\ArticleCategorySearch;
+use ityakutia\blog\models\ArticleCategory;
+use ityakutia\blog\models\ArticleCategorySearch;
 use yii\db\StaleObjectException;
 use yii\filters\AccessControl;
 use yii\web\Controller;

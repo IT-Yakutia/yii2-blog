@@ -2,8 +2,9 @@
 
 namespace ityakutia\blog\controllers;
 
-use blog\models\Article;
-use blog\models\ArticleSearch;
+
+use ityakutia\blog\models\Article;
+use ityakutia\blog\models\ArticleSearch;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;

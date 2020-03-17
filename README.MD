@@ -36,7 +36,7 @@ Once the extension is installed, simply add in your console config:
                 // '@console/migrations', // yii migrate/create app_init
                 // '@yii/rbac/migrations',
                 /* ... */
-                '@it-yakutia/blog/migrations', // yii migrate/create add_some_table --migrationPath=@it-yakutia/blog/migrations
+                '@vendor/it-yakutia/yii2-blog/src/migrations'
             ],
     ],
 ],
