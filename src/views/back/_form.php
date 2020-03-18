@@ -1,7 +1,8 @@
 <?php
 
+use ityakutia\gallery\models\GalleryArticle;
 use ityakutia\blog\models\ArticleCategory;
-use gallery\widgets\imgUploader\WGalleryImgUploader; // TODO после добавления галереи
+use ityakutia\gallery\widgets\imgUploader\WGalleryImgUploader;
 use uraankhayayaal\materializecomponents\checkbox\WCheckbox;
 use uraankhayayaal\materializecomponents\imgcropper\Cropper;
 use uraankhayayaal\redactor\RedactorWidget;
@@ -104,7 +105,7 @@ use yii\helpers\ArrayHelper;
     <div id="article_tab_gallery">
         <?= WGalleryImgUploader::widget([
             'model' => $model,
-            'galleryClass' => 'ityakutia\gallery\models\GalleryArticle',
+            'galleryClass' => GalleryArticle::class,
         ]) ?>
     </div>
 

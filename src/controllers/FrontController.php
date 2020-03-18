@@ -5,16 +5,16 @@ namespace ityakutia\blog\controllers;
 
 
 use Yii;
-use blog\models\ArticleCategory;
-use blog\models\Article;
-use blog\models\ArticleSearch;
+use ityakutia\blog\models\ArticleCategory;
+use ityakutia\blog\models\Article;
+use ityakutia\blog\models\ArticleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 
 class FrontController extends Controller
 {
-    public function actionIndex($filter_category_id = null): string
+    public function actionIndex($filter_category_id = null)
     {
         $searchModel = new ArticleSearch();
         $dataProvider = $searchModel->searchFront(Yii::$app->request->queryParams, $filter_category_id);
@@ -34,7 +34,7 @@ class FrontController extends Controller
      * @return string
      * @throws NotFoundHttpException
      */
-    public function actionView($id): string
+    public function actionView($id)
     {
         $view = Yii::$app->params['custom_view_for_modules']['blog_front']['view'] ?? 'view';
 

@@ -3,7 +3,7 @@
 namespace ityakutia\blog\models;
 
 use yii\behaviors\TimestampBehavior;
-use gallery\models\GalleryArticle;
+use ityakutia\gallery\models\GalleryArticle;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
