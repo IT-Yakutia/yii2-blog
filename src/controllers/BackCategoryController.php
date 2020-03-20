@@ -17,7 +17,7 @@ use yii\filters\VerbFilter;
  */
 class BackCategoryController extends Controller
 {
-    public function behaviors(): array
+    public function behaviors()
     {
         return [
             'access' => [
@@ -135,7 +135,7 @@ class BackCategoryController extends Controller
      * @return ArticleCategory the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id): ArticleCategory
+    protected function findModel($id)
     {
         if (($model = ArticleCategory::findOne($id)) !== null) {
             return $model;

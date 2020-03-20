@@ -18,7 +18,7 @@ use yii\db\ActiveRecord;
  */
 class ArticleCategorySet extends ActiveRecord
 {
-    public static function tableName(): string 
+    public static function tableName()
     {
         return 'article_category_set';
     }
@@ -36,7 +36,7 @@ class ArticleCategorySet extends ActiveRecord
         ];
     }
 
-    public function attributeLabels(): array
+    public function attributeLabels()
     {
         return [
             'id' => 'ID',
@@ -45,12 +45,12 @@ class ArticleCategorySet extends ActiveRecord
         ];
     }
 
-    public function getArticle(): ActiveQuery
+    public function getArticle()
     {
         return $this->hasOne(Article::class, ['id' => 'article_id']);
     }
 
-    public function getArticleCategory(): ActiveQuery
+    public function getArticleCategory()
     {
         return $this->hasOne(ArticleCategory::class, ['id' => 'article_category_id']);
     }

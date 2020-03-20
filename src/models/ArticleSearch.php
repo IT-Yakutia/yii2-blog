@@ -10,7 +10,7 @@ use yii\data\ActiveDataProvider;
 
 class ArticleSearch extends Article
 {
-    public function rules(): array
+    public function rules()
     {
         return [
             [['id', 'is_publish', 'status', 'created_at', 'updated_at'], 'integer'],
@@ -18,7 +18,7 @@ class ArticleSearch extends Article
         ];
     }
 
-    public function scenarios(): array
+    public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
@@ -31,7 +31,7 @@ class ArticleSearch extends Article
      *
      * @return ActiveDataProvider
      */
-    public function search($params): ActiveDataProvider
+    public function search($params)
     {
         $query = Article::find();
 
@@ -65,7 +65,7 @@ class ArticleSearch extends Article
     }
 
 
-    public function searchFront($params, $filter_category_id): ActiveDataProvider
+    public function searchFront($params, $filter_category_id)
     {
         $query = Article::find();
 

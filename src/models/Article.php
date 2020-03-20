@@ -29,18 +29,18 @@ class Article extends ActiveRecord
 {
     public $categories = [];
 
-    public static function tableName(): string
+    public static function tableName()
     {
         return 'article';
     }
-    public function behaviors(): array
+    public function behaviors()
     {
         return [
             TimestampBehavior::class,
         ];
     }
 
-    public function rules(): array
+    public function rules()
     {
         return [
             [['title'], 'required'],
@@ -51,7 +51,7 @@ class Article extends ActiveRecord
         ];
     }
 
-    public function attributeLabels(): array
+    public function attributeLabels()
     {
         return [
             'id' => 'ID',
@@ -89,7 +89,7 @@ class Article extends ActiveRecord
     /**
      * @return ActiveQuery
      */
-    public function getArticleCategorySets(): ActiveQuery
+    public function getArticleCategorySets()
     {
         return $this->hasMany(ArticleCategorySet::class, ['article_id' => 'id']);
     }
@@ -97,7 +97,7 @@ class Article extends ActiveRecord
     /**
      * @return ActiveQuery
      */
-    public function getGalleryArticles(): ActiveQuery
+    public function getGalleryArticles()
     {
         return $this->hasMany(GalleryArticle::class, ['article_id' => 'id']);
     }

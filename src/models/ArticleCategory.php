@@ -29,14 +29,14 @@ class ArticleCategory extends ActiveRecord
         return 'article_category';
     }
 
-    public function behaviors(): array
+    public function behaviors()
     {
         return [
             TimestampBehavior::class,
         ];
     }
 
-    public function rules(): array
+    public function rules()
     {
         return [
             [['title'], 'required'],
@@ -45,7 +45,7 @@ class ArticleCategory extends ActiveRecord
         ];
     }
 
-    public function attributeLabels(): array
+    public function attributeLabels()
     {
         return [
             'id' => 'ID',
@@ -60,7 +60,7 @@ class ArticleCategory extends ActiveRecord
     /**
      * @return ActiveQuery
      */
-    public function getArticleCategorySets(): ActiveQuery
+    public function getArticleCategorySets()
     {
         return $this->hasMany(ArticleCategorySet::class, ['article_category_id' => 'id']);
     }

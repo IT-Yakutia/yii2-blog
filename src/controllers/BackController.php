@@ -20,7 +20,7 @@ use yii\web\NotFoundHttpException;
 
 class BackController extends Controller
 {
-    public function behaviors(): array
+    public function behaviors()
     {
         return [
             'access' => [
@@ -41,7 +41,7 @@ class BackController extends Controller
         ];
     }
 
-    public function actions(): array
+    public function actions()
     {
         return [
             'image-upload' => [
@@ -165,7 +165,7 @@ class BackController extends Controller
      * @return Article the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id): Article
+    protected function findModel($id)
     {
         if (($model = Article::findOne($id)) !== null) {
             return $model;
