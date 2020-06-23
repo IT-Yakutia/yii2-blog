@@ -76,7 +76,13 @@ use yii\helpers\ArrayHelper;
                     'fullscreen',
                     'imagemanager',
                     'filemanager',
+                    'fontcolor',
+                    'fontfamily',
+                    'fontsize',
+                    'limiter',
                     'table',
+                    'textdirection',
+                    'textexpander',
                     'video',
                 ]
             ],
