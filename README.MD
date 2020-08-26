@@ -77,3 +77,8 @@ Custom view file:
     ],
 ],
 ```
+
+Add fixtures:
+```sh
+php yii fixture ArticleCategorySet --namespace='ityakutia\blog\tests\fixtures' --interactive=0
+```
