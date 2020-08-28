@@ -27,13 +27,14 @@ Once the extension is installed, simply add in your console config:
 
 ```php
 'controllerMap' => [
-    /* ... */
+    ...
     'migrate' => [
-            // 'class' => 'yii\console\controllers\MigrateController',
-            'migrationPath' => [
-                /* ... */
-                '@vendor/it-yakutia/yii2-blog/src/migrations'
-            ],
+        ...
+        'migrationPath' => [
+            ...
+            '@vendor/it-yakutia/yii2-blog/src/migrations',
+            ...
+        ],
     ],
 ],
 ```
