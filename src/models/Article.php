@@ -102,8 +102,8 @@ class Article extends ActiveRecord
         return $this->hasMany(GalleryArticle::class, ['article_id' => 'id']);
     }
 
-    public function getMore()
+    public function getMore($limit = 5)
     {
-        return $this->find()->where(['is_publish' => 1])->andWhere(['>', 'created_at', $this->created_at])->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
+        return $this->find()->where(['is_publish' => 1])->andWhere(['>=', 'created_at', $this->created_at])->orderBy(['created_at' => SORT_DESC])->limit($limit)->all();
     }
 }
