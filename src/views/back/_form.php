@@ -54,8 +54,8 @@ use yii\helpers\ArrayHelper;
                 !empty(Yii::$app->params['ext_blog_img_w']) ? Yii::$app->params['ext_blog_img_w'] : 525
                 ),
             'maxSize' => [
-                !empty(Yii::$app->params['ext_blog_img_h']) ? Yii::$app->params['ext_blog_img_w'] : 525,
-                !empty(Yii::$app->params['ext_blog_img_w']) ? Yii::$app->params['ext_blog_img_h'] : 525,
+                !empty(Yii::$app->params['ext_blog_img_h']) ? (Yii::$app->params['ext_blog_img_w']*2) : 525,
+                !empty(Yii::$app->params['ext_blog_img_w']) ? (Yii::$app->params['ext_blog_img_h']*2) : 525,
                 'px'
             ],
             'minSize' => [10, 10, 'px'],
