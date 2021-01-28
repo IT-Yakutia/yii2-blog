@@ -45,7 +45,8 @@ class Article extends ActiveRecord
         return [
             [['title'], 'required'],
             [['content'], 'string'],
-            [['is_publish', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['status', 'created_at', 'updated_at'], 'integer'],
+            [['is_publish'], 'boolean'],
             [['title', 'photo', 'video', 'description', 'keywords'], 'string', 'max' => 255],
             ['categories', 'each', 'rule' => ['integer']],
         ];

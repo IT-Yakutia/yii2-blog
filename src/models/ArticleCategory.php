@@ -40,7 +40,8 @@ class ArticleCategory extends ActiveRecord
     {
         return [
             [['title'], 'required'],
-            [['is_publish', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['status', 'created_at', 'updated_at'], 'integer'],
+            [['is_publish'], 'boolean'],
             [['title'], 'string', 'max' => 255],
         ];
     }
