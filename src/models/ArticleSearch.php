@@ -10,11 +10,20 @@ use yii\data\ActiveDataProvider;
 
 class ArticleSearch extends Article
 {
+    public $word;
+    
     public function rules()
     {
         return [
             [['id', 'is_publish', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'content', 'photo', 'video'], 'safe'],
+            [['title', 'content', 'photo', 'video', 'word'], 'safe'],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return parent::attributeLabels() + [
+            'word' => 'Поиск',
         ];
     }
 
@@ -96,8 +105,8 @@ class ArticleSearch extends Article
             $query->joinWith(['articleCategorySets'])
                 ->andFilterWhere(['like', 'article_category_set.article_category_id', $filter_category_id]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'content', $this->content]);
+        $query->andFilterWhere(['like', 'title', $this->word])
+            ->orFilterWhere(['like', 'content', $this->word]);
 
         return $dataProvider;
     }
