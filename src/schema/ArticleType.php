@@ -22,6 +22,14 @@ class ArticleType extends ObjectType
                         'type' => Type::string(),
                         'description' => "Содержание",
                     ],
+                    'photo' => [
+                        'type' => Type::string(),
+                        'description' => "Фото",
+                    ],
+                    'video' => [
+                        'type' => Type::string(),
+                        'description' => "Видео",
+                    ],
                     'is_publish' => [
                         'type' => Type::boolean(),
                         'description' => "Опубликован",
@@ -29,6 +37,14 @@ class ArticleType extends ObjectType
                     'created_at' => [
                         'type' => Type::int(),
                         'description' => "Создан",
+                    ],
+                    'description' => [
+                        'type' => Type::string(),
+                        'description' => "Описание",
+                    ],
+                    'keywords' => [
+                        'type' => Type::string(),
+                        'description' => "Ключевые слова",
                     ],
                     'categorySets' => [
                         'type' => Type::listOf(Types::articleCategorySet()),
