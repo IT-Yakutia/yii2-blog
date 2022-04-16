@@ -11,11 +11,12 @@ use yii\data\ActiveDataProvider;
 class ArticleSearch extends Article
 {
     public $word;
+    public $category_id;
     
     public function rules()
     {
         return [
-            [['id', 'is_publish', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'is_publish', 'status', 'created_at', 'updated_at', 'category_id'], 'integer'],
             [['title', 'content', 'photo', 'video', 'word'], 'safe'],
         ];
     }
@@ -24,6 +25,7 @@ class ArticleSearch extends Article
     {
         return parent::attributeLabels() + [
             'word' => 'Поиск',
+            'category_id' => 'Категория новостей',
         ];
     }
 
@@ -44,6 +46,8 @@ class ArticleSearch extends Article
     {
         $query = Article::find();
 
+        $query->joinWith(['articleCategorySets']);
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -61,10 +65,11 @@ class ArticleSearch extends Article
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            'article.id' => $this->id,
             'is_publish' => $this->is_publish,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'article_category_id' => $this->category_id,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
@@ -78,6 +83,8 @@ class ArticleSearch extends Article
     {
         $query = Article::find();
 
+        $query->joinWith(['articleCategorySets', 'articleCategorySets.articleCategory']);
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -95,18 +102,19 @@ class ArticleSearch extends Article
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'is_publish' => true,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'article.id' => $this->id,
+            'article.is_publish' => true,
+            'article_category.is_publish' => true,
+            'article.created_at' => $this->created_at,
+            'article.updated_at' => $this->updated_at,
+            'article_category_id' => $this->category_id,
         ]);
 
         if( $filter_category_id != null )
-            $query->joinWith(['articleCategorySets'])
-                ->andFilterWhere(['like', 'article_category_set.article_category_id', $filter_category_id]);
+            $query->andFilterWhere(['like', 'article_category_set.article_category_id', $filter_category_id]);
 
-        $query->andFilterWhere(['like', 'title', $this->word])
-            ->orFilterWhere(['like', 'content', $this->word]);
+        $query->andFilterWhere(['like', 'article.title', $this->word])
+            ->orFilterWhere(['like', 'article.content', $this->word]);
 
         return $dataProvider;
     }
