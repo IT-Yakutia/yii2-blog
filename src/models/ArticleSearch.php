@@ -104,7 +104,6 @@ class ArticleSearch extends Article
         $query->andFilterWhere([
             'article.id' => $this->id,
             'article.is_publish' => true,
-            'article_category.is_publish' => true,
             'article.created_at' => $this->created_at,
             'article.updated_at' => $this->updated_at,
         ]);
@@ -113,7 +112,7 @@ class ArticleSearch extends Article
             $query->andFilterWhere([
                 'article_category_id' => $this->category_id,
             ]);
-            
+
         if( $filter_category_id != null )
             $query->andFilterWhere(['like', 'article_category_set.article_category_id', $filter_category_id]);
 
