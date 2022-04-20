@@ -107,9 +107,13 @@ class ArticleSearch extends Article
             'article_category.is_publish' => true,
             'article.created_at' => $this->created_at,
             'article.updated_at' => $this->updated_at,
-            'article_category_id' => $this->category_id,
         ]);
 
+        if( $this->category_id != null )
+            $query->andFilterWhere([
+                'article_category_id' => $this->category_id,
+            ]);
+            
         if( $filter_category_id != null )
             $query->andFilterWhere(['like', 'article_category_set.article_category_id', $filter_category_id]);
 
