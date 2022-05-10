@@ -1,6 +1,6 @@
 <?php
 
-namespace ityakutia\blog\controllers;
+namespace ityakutia\blog\backend\controllers;
 
 
 use ityakutia\blog\models\Article;
@@ -28,7 +28,7 @@ class BackController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['news']
+                        'permissions' => ['news']
                     ]
                 ],
             ],

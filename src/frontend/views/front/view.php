@@ -30,10 +30,12 @@ $this->title = $model->title;
                                 <div class="content">
                                     <h2 class="title mb-4"><?= $model->title ?></h2>
                                     <div class="share d-flex justify-content-between mb-5">
+                                        <?php /*
                                         <div class="d-flex align-items-center">
                                             <i class="mr-3"><?= Yii::t('blog', 'blog_share'); ?></i>
                                             <?= \frontend\widgets\social\Share::widget(['id' => $model->id, 'url' => Url::current([], true), 'text' => $model->title])?>
                                         </div>
+                                        */ ?>
 
                                         <time datetime="2018-06-05"><i><?= Yii::$app->formatter->asDate($model->created_at) ?></i></time>
                                     </div>

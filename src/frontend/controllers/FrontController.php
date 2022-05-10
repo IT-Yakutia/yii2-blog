@@ -1,8 +1,6 @@
 <?php
 
-
-namespace ityakutia\blog\controllers;
-
+namespace ityakutia\blog\frontend\controllers;
 
 use Yii;
 use ityakutia\blog\models\ArticleCategory;
@@ -20,7 +18,7 @@ class FrontController extends Controller
         $dataProvider = $searchModel->searchFront(Yii::$app->request->queryParams, $filter_category_id);
         $categories = ArticleCategory::find()->where(['is_publish' => true])->all();
 
-        $view = Yii::$app->params['custom_view_for_modules']['blog_front']['index'] ?? 'index';
+        $view = Yii::$app->params['custom_view_for_modules']['blog']['index'] ?? 'index';
 
         return $this->render($view, [
             'searchModel' => $searchModel,
@@ -36,7 +34,7 @@ class FrontController extends Controller
      */
     public function actionView($id)
     {
-        $view = Yii::$app->params['custom_view_for_modules']['blog_front']['view'] ?? 'view';
+        $view = Yii::$app->params['custom_view_for_modules']['blog']['view'] ?? 'view';
 
         $model = $this->findModel($id);
         return $this->render($view, [
@@ -58,4 +56,3 @@ class FrontController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
-

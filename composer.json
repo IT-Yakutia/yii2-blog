@@ -16,12 +16,20 @@
     "uraankhayayaal/yii2-materializecomponents": "*",
     "uraankhayayaal/yii2-redactor": "*"
   },
-  "extra": {
-    "bootstrap": "ityakutia\\blog\\Bootstrap"
-  },
   "autoload": {
     "psr-4": {
       "ityakutia\\blog\\": "src"
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "config": {
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true
     }
   }
 }

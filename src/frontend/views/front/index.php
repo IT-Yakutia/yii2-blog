@@ -18,7 +18,7 @@ $this->title = Yii::t('app', 'our_blog');
                 <div class="row">
                     <div class="col-12 col-lg-10 offset-lg-1">
                         <ul class="sections list-inline mb-0">
-                            <li class="list-inline-item"><a href="<?= Url::to(['/blog/front/index']); ?>" class="btn btn-outline"><?= Yii::t('blog', 'blog_all'); ?></a></li>
+                            <li class="list-inline-item"><a href="<?= Url::to(['/blog/front/index']); ?>" class="btn btn-outline"><?= 'All' /*Yii::t('blog', 'blog_all');*/ ?></a></li>
                             <?php foreach ($categories as $key => $model) { ?>
                                 <li class="list-inline-item"><a href="<?= Url::current(['filter_category_id' => $model->id],true); ?>" class="btn btn-outline"><?= $model->title ?></a></li>
                             <?php } ?>
