@@ -15,6 +15,6 @@ use yii\helpers\Url;
 		</div>
 	</a>
 
-	<?= \frontend\widgets\social\Share::widget(['id' => $model->id, 'url' => Url::toRoute(['/blog/front/view', 'id' => $model->id], true), 'text' => $model->title])?>
+	<?= ''/*\frontend\widgets\social\Share::widget(['id' => $model->id, 'url' => Url::toRoute(['/blog/front/view', 'id' => $model->id], true), 'text' => $model->title])*/?>
 </div>
 

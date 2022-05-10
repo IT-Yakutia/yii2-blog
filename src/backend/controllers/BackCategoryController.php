@@ -1,7 +1,7 @@
 <?php
 
 
-namespace ityakutia\blog\controllers;
+namespace ityakutia\blog\backend\controllers;
 
 use Yii;
 use ityakutia\blog\models\ArticleCategory;
@@ -25,7 +25,7 @@ class BackCategoryController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['news_category']
+                        'permissions' => ['news_category']
                     ]
                 ],
             ],
