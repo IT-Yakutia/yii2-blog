@@ -14,7 +14,8 @@
     "yiisoft/yii2": "~2.0.0",
     "uraankhayayaal/yii2-sortable": "~1.0.1",
     "uraankhayayaal/yii2-materializecomponents": "~1.0.1",
-    "uraankhayayaal/yii2-redactor": "~1.0.0"
+    "uraankhayayaal/yii2-redactor": "~1.0.0",
+    "it-yakutia/yii2-gallery": "~1.0.0"
   },
   "extra": {
     "bootstrap": "ityakutia\\blog\\Bootstrap"
