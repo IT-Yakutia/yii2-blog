@@ -2,7 +2,9 @@
 
 namespace ityakutia\blog\models;
 
+use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\behaviors\AttributeBehavior;
 use ityakutia\gallery\models\GalleryArticle;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
@@ -37,6 +39,25 @@ class Article extends ActiveRecord
     {
         return [
             TimestampBehavior::class,
+            [
+                'class' => AttributeBehavior::class,
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'created_at',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'created_at',
+                ],
+                'value' => function ($event) {
+                    return strtotime($this->created_at);
+                },
+            ],
+            [
+                'class' => AttributeBehavior::class,
+                'attributes' => [
+                    ActiveRecord::EVENT_AFTER_FIND => 'created_at',
+                ],
+                'value' => function ($event) {
+                    return Yii::$app->formatter->asDatetime($this->created_at, 'php:d-m-Y H:i');
+                },
+            ],
         ];
     }
 
@@ -45,10 +66,11 @@ class Article extends ActiveRecord
         return [
             [['title'], 'required'],
             [['content'], 'string'],
-            [['status', 'created_at', 'updated_at'], 'integer'],
+            [['status'], 'integer'],
             [['is_publish'], 'boolean'],
             [['title', 'photo', 'video', 'description', 'keywords'], 'string', 'max' => 255],
             ['categories', 'each', 'rule' => ['integer']],
+            [['created_at', 'updated_at'], 'safe'],
         ];
     }
 

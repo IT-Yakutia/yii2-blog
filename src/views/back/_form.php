@@ -93,6 +93,8 @@ use yii\helpers\ArrayHelper;
 
         <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
 
+        <?= $form->field($model, 'created_at')->textInput(['maxlength' => true]) ?>
+
         <div class="form-group">
             <?= Html::submitButton('Сохранить', ['class' => 'btn']) ?>
         </div>
