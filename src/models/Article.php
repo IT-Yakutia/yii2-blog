@@ -38,7 +38,10 @@ class Article extends ActiveRecord
     public function behaviors()
     {
         return [
-            TimestampBehavior::class,
+            [
+                'class' => TimestampBehavior::className(),
+                'value' => function() { return date('d-m-Y H:i'); },
+            ],
             [
                 'class' => AttributeBehavior::class,
                 'attributes' => [
