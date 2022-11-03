@@ -69,6 +69,10 @@ $this->title = 'Новости';
                         },
                         'filter' => [0 => 'Нет', 1 => 'Да'],
                     ],
+                    [
+                        'attribute' => 'created_at',
+                        'format' => 'datetime',
+                    ],
                 ],
                 'pager' => [
                     'class' => LinkPager::class,
